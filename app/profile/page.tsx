@@ -4,7 +4,7 @@ import { memo, useMemo } from 'react';
 import Header from "../components/Header";
 import Image from "next/image";
 import { useState } from 'react';
-import { User, Users, Wallet, Award, ChevronRight, LogOut, Mail, Percent, ChartBar, GraduationCap } from 'lucide-react';
+import { User, Users, Wallet, Award, ChevronRight, Mail, Percent, ChartBar, GraduationCap } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
@@ -270,10 +270,6 @@ export default function Profile() {
     };
   }, [userData.level]);
 
-  const handleLogout = () => {
-    router.push('/login');
-  };
-
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
       <Header />
@@ -385,20 +381,6 @@ export default function Profile() {
               </svg>
             </div>
             <ExchangeList exchanges={userData.boundExchanges} />
-          </div>
-        </div>
-
-        {/* 功能菜单 */}
-        <div className="mt-8 bg-white rounded-2xl shadow-sm">
-          <div 
-            onClick={handleLogout}
-            className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 text-red-500"
-          >
-            <div className="flex items-center gap-3">
-              <LogOut className="w-5 h-5" />
-              <span>退出登录</span>
-            </div>
-            <ChevronRight className="w-5 h-5 text-gray-400" />
           </div>
         </div>
       </main>
