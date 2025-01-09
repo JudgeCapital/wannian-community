@@ -1,12 +1,12 @@
 'use client'
 
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useEffect, useState } from 'react';
 import Header from "../components/Header";
 import Image from "next/image";
-import { useState } from 'react';
 import { User, Users, Wallet, Award, ChevronRight, LogOut, Mail, Percent, ChartBar, GraduationCap } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import { useAuth } from '../contexts/AuthContext';
 
 // 动态导入模态框组件
 const AvatarModal = dynamic<{
@@ -234,11 +234,11 @@ const MEMBER_LEVELS: Record<MemberLevel, LevelConfig> = {
 
 export default function Profile() {
   const router = useRouter();
-  
+  const { user, isAuthenticated, isLoading } = useAuth();
   const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [showPrivilegesModal, setShowPrivilegesModal] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(PRESET_AVATARS[0]);
-
+  
   // 使用 useMemo 缓存用户数据
   const userData = useMemo(() => ({
     name: "张三",
@@ -269,6 +269,30 @@ export default function Profile() {
       nextLevel: currentLevelIndex < levels.length - 1 ? MEMBER_LEVELS[levels[currentLevelIndex + 1]] : null
     };
   }, [userData.level]);
+
+  // 路由保护
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.push('/login');
+    }
+  }, [isLoading, isAuthenticated, router]);
+
+  // 如果正在加载或未登录，显示加载状态
+  if (isLoading) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center bg-[#f5f5f5]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-[#4285F4] border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-gray-600">加载中...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // 如果未登录，返回 null 防止闪烁
+  if (!isAuthenticated) {
+    return null;
+  }
 
   const handleLogout = () => {
     router.push('/login');
@@ -388,41 +412,27 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* 功能菜单 */}
-        <div className="mt-8 bg-white rounded-2xl shadow-sm">
-          <div 
-            onClick={handleLogout}
-            className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 text-red-500"
-          >
-            <div className="flex items-center gap-3">
-              <LogOut className="w-5 h-5" />
-              <span>退出登录</span>
-            </div>
-            <ChevronRight className="w-5 h-5 text-gray-400" />
-          </div>
-        </div>
+        {/* 动态加载模态框 */}
+        {showAvatarModal && (
+          <AvatarModal
+            avatars={PRESET_AVATARS}
+            selectedAvatar={selectedAvatar}
+            onSelect={(avatar) => {
+              setSelectedAvatar(avatar);
+              setShowAvatarModal(false);
+            }}
+            onClose={() => setShowAvatarModal(false)}
+          />
+        )}
+
+        {showPrivilegesModal && (
+          <PrivilegesModal
+            userData={userData}
+            memberLevels={MEMBER_LEVELS}
+            onClose={() => setShowPrivilegesModal(false)}
+          />
+        )}
       </main>
-
-      {/* 动态加载模态框 */}
-      {showAvatarModal && (
-        <AvatarModal
-          avatars={PRESET_AVATARS}
-          selectedAvatar={selectedAvatar}
-          onSelect={(avatar) => {
-            setSelectedAvatar(avatar);
-            setShowAvatarModal(false);
-          }}
-          onClose={() => setShowAvatarModal(false)}
-        />
-      )}
-
-      {showPrivilegesModal && (
-        <PrivilegesModal
-          userData={userData}
-          memberLevels={MEMBER_LEVELS}
-          onClose={() => setShowPrivilegesModal(false)}
-        />
-      )}
     </div>
   );
 } 

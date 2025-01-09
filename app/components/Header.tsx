@@ -3,8 +3,9 @@
 import { Search, Bell, User, ChevronDown, Clock } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import NotificationModal from './NotificationModal';
+import { useAuth } from '@/app/contexts/AuthContext';
 
 // 定义导航项
 const navItems = [
@@ -60,6 +61,8 @@ const navItems = [
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, logout } = useAuth();
   const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -635,10 +638,6 @@ export default function Header() {
                 className="flex items-center gap-2 bg-white text-[#4285F4] border border-[#4285F4] p-2 rounded-full hover:bg-[#4285F4] hover:text-white transition-all duration-300"
               >
                 <User className="w-4 h-4" />
-<<<<<<< Updated upstream
-                登录
-=======
->>>>>>> Stashed changes
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showUserMenu ? 'rotate-180' : ''}`} />
               </button>
 
@@ -646,24 +645,51 @@ export default function Header() {
               <div className={`absolute right-0 mt-2 w-[160px] bg-white rounded-xl shadow-lg overflow-hidden ${
                 showUserMenu ? 'dropdown-enter' : 'dropdown-exit hidden'
               }`}>
-                <Link 
-                  href="/login" 
-                  className="flex items-center gap-2 px-4 py-3 hover:bg-gray-50 text-gray-700"
-                >
-                  <User className="w-4 h-4" />
-                  登录
-                </Link>
-                <Link 
-                  href="/register" 
-                  className="flex items-center gap-2 px-4 py-3 hover:bg-gray-50 text-gray-700"
-                >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M19 8v6m3-3h-6" />
-                  </svg>
-                  注册
-                </Link>
+                {user ? (
+                  <>
+                    <Link 
+                      href="/profile" 
+                      className="flex items-center gap-2 px-4 py-3 hover:bg-gray-50 text-gray-700"
+                    >
+                      <User className="w-4 h-4" />
+                      个人中心
+                    </Link>
+                    <button 
+                      onClick={() => {
+                        logout();
+                        setShowUserMenu(false);
+                        router.push('/login');
+                      }}
+                      className="w-full flex items-center gap-2 px-4 py-3 hover:bg-gray-50 text-red-500"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
+                      </svg>
+                      退出登录
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link 
+                      href="/login" 
+                      className="flex items-center gap-2 px-4 py-3 hover:bg-gray-50 text-gray-700"
+                    >
+                      <User className="w-4 h-4" />
+                      登录
+                    </Link>
+                    <Link 
+                      href="/register" 
+                      className="flex items-center gap-2 px-4 py-3 hover:bg-gray-50 text-gray-700"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M19 8v6m3-3h-6" />
+                      </svg>
+                      注册
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>

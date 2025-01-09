@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Register() {
   const router = useRouter();
@@ -15,15 +15,26 @@ export default function Register() {
   });
 
   const [countdown, setCountdown] = useState(0);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 这里应该添加实际的注册逻辑
-    // 现在只是模拟注册成功并跳转
-    router.push('/login');
+    // 这里应该添加实际的注册逻辑和API调用
+    // 现在只是模拟注册成功
+    setShowSuccessModal(true);
+    // 2秒后自动跳转到登录页
+    setTimeout(() => {
+      router.push('/login');
+    }, 2000);
   };
 
   const handleSendVerificationCode = () => {
+    if (!formData.email) {
+      alert('请先输入邮箱地址');
+      return;
+    }
     // 这里应该添加发送验证码的逻辑
     setCountdown(60);
     const timer = setInterval(() => {
@@ -38,10 +49,9 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]">
-      {/* 主要内容区域 */}
-      <div className="pt-[60px] flex items-center justify-center min-h-[calc(100vh-60px)] px-4">
-        <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-sm">
+    <>
+      <div className="h-screen w-screen flex items-center justify-center bg-[#f5f5f5] fixed top-0 left-0">
+        <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-sm">
           {/* Logo */}
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">创建账号</h2>
@@ -50,97 +60,89 @@ export default function Register() {
 
           {/* 注册表单 */}
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="space-y-4">
-              <div>
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
-                  用户名
-                </label>
+            <div>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                用户名
+              </label>
+              <input
+                id="username"
+                type="text"
+                required
+                value={formData.username}
+                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:bg-white transition-all"
+                placeholder="请输入用户名"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                邮箱
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:bg-white transition-all"
+                placeholder="请输入邮箱"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="verificationCode" className="block text-sm font-medium text-gray-700 mb-1">
+                验证码
+              </label>
+              <div className="flex gap-3">
                 <input
-                  id="username"
-                  name="username"
+                  id="verificationCode"
                   type="text"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#4285F4] focus:border-[#4285F4]"
-                  placeholder="请设置用户名"
-                  value={formData.username}
-                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                  value={formData.verificationCode}
+                  onChange={(e) => setFormData({ ...formData, verificationCode: e.target.value })}
+                  className="flex-1 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:bg-white transition-all"
+                  placeholder="请输入验证码"
                 />
+                <button
+                  type="button"
+                  onClick={handleSendVerificationCode}
+                  disabled={countdown > 0}
+                  className="px-4 py-2 bg-[#4285F4] text-white rounded-lg hover:bg-[#3367D6] disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors whitespace-nowrap text-sm min-w-[120px]"
+                >
+                  {countdown > 0 ? `${countdown}秒后重试` : '获取验证码'}
+                </button>
               </div>
+            </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  邮箱
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#4285F4] focus:border-[#4285F4]"
-                  placeholder="请输入邮箱"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-              </div>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                密码
+              </label>
+              <input
+                id="password"
+                type="password"
+                required
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:bg-white transition-all"
+                placeholder="请输入密码"
+              />
+            </div>
 
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                  密码
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#4285F4] focus:border-[#4285F4]"
-                  placeholder="请设置密码"
-                  value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                />
-                <p className="mt-1 text-sm text-gray-500">密码长度至少8位，包含字母和数字</p>
-              </div>
-
-              <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
-                  确认密码
-                </label>
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#4285F4] focus:border-[#4285F4]"
-                  placeholder="请再次输入密码"
-                  value={formData.confirmPassword}
-                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="verificationCode" className="block text-sm font-medium text-gray-700 mb-1">
-                  验证码
-                </label>
-                <div className="flex gap-4">
-                  <input
-                    id="verificationCode"
-                    name="verificationCode"
-                    type="text"
-                    required
-                    className="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#4285F4] focus:border-[#4285F4]"
-                    placeholder="请输入验证码"
-                    value={formData.verificationCode}
-                    onChange={(e) => setFormData({ ...formData, verificationCode: e.target.value })}
-                  />
-                  <button
-                    type="button"
-                    onClick={handleSendVerificationCode}
-                    disabled={countdown > 0}
-                    className="flex-shrink-0 px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-[#4285F4] hover:bg-[#3367D6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4285F4] disabled:bg-gray-300 disabled:cursor-not-allowed min-w-[120px]"
-                  >
-                    {countdown > 0 ? `${countdown}秒后重试` : '获取验证码'}
-                  </button>
-                </div>
-              </div>
+            <div>
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                确认密码
+              </label>
+              <input
+                id="confirmPassword"
+                type="password"
+                required
+                value={formData.confirmPassword}
+                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:bg-white transition-all"
+                placeholder="请再次输入密码"
+              />
             </div>
 
             <div className="flex items-center">
@@ -151,74 +153,170 @@ export default function Register() {
                 required
                 className="h-4 w-4 text-[#4285F4] focus:ring-[#4285F4] border-gray-300 rounded"
               />
-              <label htmlFor="agree-terms" className="ml-2 block text-sm text-gray-900">
+              <label htmlFor="agree-terms" className="ml-2 block text-sm text-gray-700">
                 我已阅读并同意
-                <a href="#" className="font-medium text-[#4285F4] hover:text-[#3367D6] ml-1">
+                <button 
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowTermsModal(true);
+                  }} 
+                  className="text-[#4285F4] hover:text-[#3367D6] ml-1"
+                >
                   服务条款
-                </a>
+                </button>
                 和
-                <a href="#" className="font-medium text-[#4285F4] hover:text-[#3367D6] ml-1">
+                <button 
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowPrivacyModal(true);
+                  }} 
+                  className="text-[#4285F4] hover:text-[#3367D6] ml-1"
+                >
                   隐私政策
-                </a>
+                </button>
               </label>
             </div>
 
-            <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-[#4285F4] hover:bg-[#3367D6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4285F4]"
-              >
-                注册
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-[#4285F4] hover:bg-[#3367D6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4285F4]"
+            >
+              注册
+            </button>
 
             <div className="text-center text-sm">
               <span className="text-gray-600">已有账号？</span>
-              <a 
-                href="/login" 
-                className="font-medium text-[#4285F4] hover:text-[#3367D6] ml-1"
-              >
+              <Link href="/login" className="ml-1 text-[#4285F4] hover:text-[#3367D6]">
                 立即登录
-              </a>
+              </Link>
             </div>
           </form>
+        </div>
+      </div>
 
-          {/* 其他注册方式 */}
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">其他注册方式</span>
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-3 gap-3">
-              <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <span className="sr-only">Sign up with WeChat</span>
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8.691 2C4.547 2 1 5.547 1 9.691c0 2.29 1.006 4.342 2.594 5.731l-0.649 1.948c-0.036 0.107-0.005 0.225 0.077 0.304 0.082 0.079 0.201 0.11 0.308 0.074l2.219-0.738c0.836 0.235 1.72 0.363 2.637 0.363 4.144 0 7.691-3.547 7.691-7.691 0-4.144-3.547-7.691-7.691-7.691zM17.309 22c4.144 0 7.691-3.547 7.691-7.691 0-2.29-1.006-4.342-2.594-5.731l0.649-1.948c0.036-0.107 0.005-0.225-0.077-0.304-0.082-0.079-0.201-0.11-0.308-0.074l-2.219 0.738c-0.836-0.235-1.72-0.363-2.637-0.363-4.144 0-7.691 3.547-7.691 7.691 0 4.144 3.547 7.691 7.691 7.691z"/>
-                </svg>
-              </button>
-
-              <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <span className="sr-only">Sign up with QQ</span>
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12.003 2c-2.265 0-6.29 1.364-6.29 7.325v1.195S3.55 14.96 3.55 17.474c0 .665.17 1.025.281 1.025.114 0 .902-.484 1.748-2.072 0 0-.18 2.197 1.904 3.967 0 0-1.77.495-1.77 1.182 0 .686 4.078.43 6.29.43 2.213 0 6.29.256 6.29-.43 0-.687-1.77-1.182-1.77-1.182s2.085-1.77 1.905-3.967c.846 1.588 1.634 2.072 1.746 2.072.111 0 .282-.36.282-1.025 0-2.514-2.166-6.954-2.166-6.954V9.325C18.29 3.364 14.268 2 12.003 2z"/>
-                </svg>
-              </button>
-
-              <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                <span className="sr-only">Sign up with Email</span>
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </button>
+      {/* 服务条款模态框 */}
+      {showTermsModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 bg-black opacity-30" onClick={() => setShowTermsModal(false)}></div>
+          <div className="relative bg-white rounded-2xl p-8 shadow-xl max-w-2xl max-h-[80vh] overflow-y-auto">
+            <button 
+              onClick={() => setShowTermsModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">服务条款</h2>
+            <div className="space-y-6 text-gray-600">
+              <section>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">1. 服务协议的范围</h3>
+                <p className="leading-relaxed">
+                  本协议是用户（您）与万年社区（以下简称"我们"）之间就万年社区服务等相关事宜所订立的契约。请您仔细阅读本服务协议，如果您不同意本协议的任何条款，请不要注册或使用我们的服务。
+                </p>
+              </section>
+              <section>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">2. 账号注册与安全</h3>
+                <p className="leading-relaxed">
+                  2.1 您承诺在注册时提供真实、准确、完整的个人资料，并在资料发生变更时及时更新。<br/>
+                  2.2 您有责任维护账号和密码的安全性，并对您账号下的所有活动承担责任。<br/>
+                  2.3 如发现任何未经授权使用您账号的情况，请立即通知我们。
+                </p>
+              </section>
+              <section>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">3. 用户行为规范</h3>
+                <p className="leading-relaxed">
+                  3.1 您同意不发布任何违法、侵权、虚假或误导性的内容。<br/>
+                  3.2 您同意不从事任何可能损害平台或其他用户利益的行为。<br/>
+                  3.3 您同意遵守所有适用的法律法规和平台规则。
+                </p>
+              </section>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+
+      {/* 隐私政策模态框 */}
+      {showPrivacyModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 bg-black opacity-30" onClick={() => setShowPrivacyModal(false)}></div>
+          <div className="relative bg-white rounded-2xl p-8 shadow-xl max-w-2xl max-h-[80vh] overflow-y-auto">
+            <button 
+              onClick={() => setShowPrivacyModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">隐私政策</h2>
+            <div className="space-y-6 text-gray-600">
+              <section>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">1. 信息收集</h3>
+                <p className="leading-relaxed">
+                  我们收集的信息包括但不限于：您的用户名、电子邮件地址、密码等注册信息，以及您在使用我们服务时产生的交易记录、浏览历史等使用信息。
+                </p>
+              </section>
+              <section>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">2. 信息使用</h3>
+                <p className="leading-relaxed">
+                  我们使用收集的信息来：<br/>
+                  - 提供、维护和改进我们的服务<br/>
+                  - 向您发送服务通知和更新<br/>
+                  - 防止欺诈和提高安全性<br/>
+                  - 进行数据分析和研究
+                </p>
+              </section>
+              <section>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">3. 信息保护</h3>
+                <p className="leading-relaxed">
+                  我们采用行业标准的安全措施来保护您的个人信息，防止未经授权的访问、使用或泄露。我们承诺不会将您的个人信息出售、出租或交易给第三方。
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 成功提示模态框 */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="relative bg-white rounded-2xl p-6 flex flex-col items-center shadow-xl animate-fade-in">
+            <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
+              <svg 
+                className="w-8 h-8 text-green-500" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2"
+              >
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">注册成功</h3>
+            <p className="text-gray-600 mb-4">即将跳转到登录页面...</p>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.2s ease-out forwards;
+        }
+      `}</style>
+    </>
   );
 } 
