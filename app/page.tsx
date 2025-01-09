@@ -1,9 +1,9 @@
 'use client'
 
 import Image from "next/image";
-import { Search, Bell, User, ChevronDown, MessageSquare, TrendingUp, Users, Clock } from "lucide-react";
+import { TrendingUp, Users, Clock } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // 论坛分类数据
 const forumCategories = [

@@ -4,7 +4,6 @@ import { Search, Bell, User, ChevronDown, Clock } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import styles from './Header.module.css';
 import NotificationModal from './NotificationModal';
 
 // 定义导航项

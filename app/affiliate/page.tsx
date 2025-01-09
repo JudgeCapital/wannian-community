@@ -70,7 +70,7 @@ export default function AffiliatePage() {
     }, 5000); // 每5秒切换一次
 
     return () => clearInterval(timer);
-  }, []);
+  }, [bannerContents.length]);
 
   // 修改表单提交处理
   const handleSubmit = (e: React.FormEvent) => {
