@@ -632,15 +632,18 @@ export default function Header() {
               onMouseLeave={handleUserMenuMouseLeave}
             >
               <button 
-                className="flex items-center gap-2 bg-white text-[#4285F4] border border-[#4285F4] px-4 py-2 rounded-full hover:bg-[#4285F4] hover:text-white transition-all duration-300"
+                className="flex items-center gap-2 bg-white text-[#4285F4] border border-[#4285F4] p-2 rounded-full hover:bg-[#4285F4] hover:text-white transition-all duration-300"
               >
                 <User className="w-4 h-4" />
+<<<<<<< Updated upstream
                 登录
+=======
+>>>>>>> Stashed changes
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showUserMenu ? 'rotate-180' : ''}`} />
               </button>
 
               {/* 用户菜单下拉框 */}
-              <div className={`absolute right-0 mt-2 w-[200px] bg-white rounded-xl shadow-lg overflow-hidden ${
+              <div className={`absolute right-0 mt-2 w-[160px] bg-white rounded-xl shadow-lg overflow-hidden ${
                 showUserMenu ? 'dropdown-enter' : 'dropdown-exit hidden'
               }`}>
                 <Link 
