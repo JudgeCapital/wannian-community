@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="200" y2="200">
+      <stop offset="0%" style="stop-color:#9C27B0"/>
+      <stop offset="100%" style="stop-color:#4A148C"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#bgGradient)"/>
+  
+  <!-- 头部 -->
+  <circle cx="100" cy="70" r="35" fill="#FFB74D"/>
+  
+  <!-- 贝雷帽 -->
+  <path d="M60 40C60 35 80 30 100 30C120 30 140 35 140 40C140 45 120 50 100 50C80 50 60 45 60 40Z" fill="#673AB7"/>
+  <path d="M65 40C65 38 85 35 100 35C115 35 135 38 135 40" fill="#9575CD"/>
+  <circle cx="100" cy="35" r="3" fill="#B39DDB"/>
+  
+  <!-- 艺术家发型 -->
+  <path d="M65 60C65 35 85 30 100 30C115 30 135 35 135 60" fill="#212121"/>
+  <path d="M135 60C135 70 145 50 140 75" fill="#212121"/>
+  <path d="M65 60C65 70 55 50 60 75" fill="#212121"/>
+  <path d="M90 30L110 30C110 35 100 45 90 30Z" fill="#212121"/>
+  
+  <!-- 艺术家围巾 -->
+  <path d="M85 95C85 90 115 90 115 95C115 100 85 100 85 95Z" fill="#E1BEE7"/>
+  <path d="M95 95L90 125" stroke="#E1BEE7" stroke-width="6"/>
+  <path d="M105 95L110 120" stroke="#E1BEE7" stroke-width="6"/>
+  
+  <!-- 画笔 -->
+  <path d="M75 110L85 105" stroke="#FFD700" stroke-width="2"/>
+  <path d="M75 110L80 115" stroke="#FFD700" stroke-width="2"/>
+  <circle cx="75" cy="110" r="2" fill="#FFD700"/>
+  
+  <!-- 调色板 -->
+  <path d="M120 110C125 105 130 110 125 115Z" fill="#795548"/>
+  <circle cx="122" cy="108" r="2" fill="#F44336"/>
+  <circle cx="127" cy="110" r="2" fill="#2196F3"/>
+  <circle cx="124" cy="113" r="2" fill="#4CAF50"/>
+  
+  <!-- 艺术家服装 -->
+  <path d="M60 140C60 110 80 100 100 100C120 100 140 110 140 140" fill="#673AB7"/>
+  <path d="M80 105H120" stroke="#9575CD" stroke-width="4"/>
+  <path d="M85 115H115" stroke="#9575CD" stroke-width="4"/>
+  
+  <!-- 眉毛 -->
+  <path d="M85 55L95 53" stroke="#212121" stroke-width="2" stroke-linecap="round"/>
+  <path d="M105 53L115 55" stroke="#212121" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 眼睛 -->
+  <circle cx="90" cy="65" r="3" fill="#212121"/>
+  <circle cx="110" cy="65" r="3" fill="#212121"/>
+  <circle cx="88" cy="64" r="1" fill="#FFFFFF"/>
+  <circle cx="108" cy="64" r="1" fill="#FFFFFF"/>
+  
+  <!-- 富有创意的微笑 -->
+  <path d="M90 80C90 80 100 85 110 80" stroke="#212121" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 耳朵 -->
+  <path d="M65 70C65 65 70 60 75 60C80 60 80 65 75 70C70 75 65 75 65 70Z" fill="#FFB74D"/>
+  <path d="M135 70C135 65 130 60 125 60C120 60 120 65 125 70C130 75 135 75 135 70Z" fill="#FFB74D"/>
+</svg> 

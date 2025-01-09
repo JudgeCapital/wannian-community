@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="200" y2="200">
+      <stop offset="0%" style="stop-color:#00BCD4"/>
+      <stop offset="100%" style="stop-color:#006064"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#bgGradient)"/>
+  
+  <!-- 科技眼镜 -->
+  <rect x="70" y="60" width="60" height="15" rx="5" fill="#263238"/>
+  <rect x="75" y="65" width="50" height="5" fill="#64FFDA"/>
+  <path d="M70 67.5L60 70" stroke="#64FFDA" stroke-width="1"/>
+  <path d="M130 67.5L140 70" stroke="#64FFDA" stroke-width="1"/>
+  
+  <!-- 头部 -->
+  <circle cx="100" cy="70" r="35" fill="#FFB74D"/>
+  
+  <!-- 头发 - 现代风格 -->
+  <path d="M65 65C65 40 85 25 100 25C115 25 135 40 135 65" fill="#37474F"/>
+  <path d="M135 65C135 75 140 60 145 75" fill="#37474F"/>
+  <path d="M65 65C65 75 60 60 55 75" fill="#37474F"/>
+  <path d="M95 25L105 25L100 35Z" fill="#37474F"/>
+  
+  <!-- 耳机 -->
+  <path d="M60 70C55 70 55 75 55 80C55 85 60 85 65 85" stroke="#263238" stroke-width="4"/>
+  <path d="M140 70C145 70 145 75 145 80C145 85 140 85 135 85" stroke="#263238" stroke-width="4"/>
+  <circle cx="63" cy="80" r="5" fill="#64FFDA"/>
+  <circle cx="137" cy="80" r="5" fill="#64FFDA"/>
+  
+  <!-- T恤 -->
+  <path d="M60 140C60 110 80 100 100 100C120 100 140 110 140 140" fill="#263238"/>
+  
+  <!-- 科技图案 -->
+  <path d="M85 110H115M90 120H110" stroke="#64FFDA" stroke-width="2"/>
+  <circle cx="85" cy="110" r="2" fill="#64FFDA"/>
+  <circle cx="115" cy="110" r="2" fill="#64FFDA"/>
+  <circle cx="90" cy="120" r="2" fill="#64FFDA"/>
+  <circle cx="110" cy="120" r="2" fill="#64FFDA"/>
+  
+  <!-- 眉毛 -->
+  <path d="M85 55L95 53" stroke="#37474F" stroke-width="2" stroke-linecap="round"/>
+  <path d="M105 53L115 55" stroke="#37474F" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 眼睛 -->
+  <circle cx="90" cy="65" r="3" fill="#37474F"/>
+  <circle cx="110" cy="65" r="3" fill="#37474F"/>
+  <circle cx="88" cy="64" r="1" fill="#64FFDA"/>
+  <circle cx="108" cy="64" r="1" fill="#64FFDA"/>
+  
+  <!-- 嘴巴 -->
+  <path d="M90 85L110 85" stroke="#37474F" stroke-width="2" stroke-linecap="round"/>
+</svg> 

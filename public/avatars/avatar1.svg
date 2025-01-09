@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="200" y2="200">
+      <stop offset="0%" style="stop-color:#4285F4"/>
+      <stop offset="100%" style="stop-color:#3367D6"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#bgGradient)"/>
+  
+  <!-- 西装外套 -->
+  <path d="M60 140C60 110 80 100 100 100C120 100 140 110 140 140" fill="#1A237E"/>
+  <path d="M85 100L75 140H125L115 100" fill="#283593"/>
+  
+  <!-- 衬衫 -->
+  <path d="M90 100V130H110V100" fill="#FFFFFF"/>
+  
+  <!-- 领带 -->
+  <path d="M95 100L100 140L105 100L100 95L95 100Z" fill="#E53935"/>
+  <path d="M97 105L100 110L103 105" fill="#C62828"/>
+  
+  <!-- 头部 -->
+  <circle cx="100" cy="70" r="35" fill="#FFB74D"/>
+  
+  <!-- 头发 -->
+  <path d="M65 70C65 45 85 30 100 30C115 30 135 45 135 70C135 85 115 80 100 80C85 80 65 85 65 70Z" fill="#1A1A1A"/>
+  <path d="M65 60C65 45 75 35 85 35C90 35 90 40 85 40C75 40 70 50 70 60" fill="#37474F"/>
+  
+  <!-- 眉毛 -->
+  <path d="M85 60L95 58" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  <path d="M105 58L115 60" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 眼睛 -->
+  <circle cx="90" cy="65" r="3" fill="#1A1A1A"/>
+  <circle cx="110" cy="65" r="3" fill="#1A1A1A"/>
+  <circle cx="88" cy="64" r="1" fill="#FFFFFF"/>
+  <circle cx="108" cy="64" r="1" fill="#FFFFFF"/>
+  
+  <!-- 嘴巴 -->
+  <path d="M95 80C95 80 100 85 105 80" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 耳朵 -->
+  <path d="M65 70C65 65 70 60 75 60C80 60 80 65 75 70C70 75 65 75 65 70Z" fill="#FFB74D"/>
+  <path d="M135 70C135 65 130 60 125 60C120 60 120 65 125 70C130 75 135 75 135 70Z" fill="#FFB74D"/>
+  
+  <!-- 领子 -->
+  <path d="M85 95L100 100L115 95" stroke="#FFFFFF" stroke-width="4"/>
+</svg> 

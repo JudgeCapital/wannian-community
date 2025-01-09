@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="200" y2="200">
+      <stop offset="0%" style="stop-color:#FF4081"/>
+      <stop offset="100%" style="stop-color:#C51162"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#bgGradient)"/>
+  
+  <!-- 头部 -->
+  <circle cx="100" cy="70" r="35" fill="#FFB74D"/>
+  
+  <!-- 时尚墨镜 -->
+  <path d="M65 65H135" stroke="#212121" stroke-width="4"/>
+  <path d="M70 65L85 75L100 65" fill="#212121"/>
+  <path d="M100 65L115 75L130 65" fill="#212121"/>
+  <rect x="70" y="63" width="60" height="4" fill="#F48FB1"/>
+  
+  <!-- 时尚发型 -->
+  <path d="M65 60C65 35 85 25 100 25C115 25 135 35 135 60" fill="#212121"/>
+  <path d="M135 60C135 70 145 45 150 70" fill="#212121"/>
+  <path d="M65 60C65 70 55 45 50 70" fill="#212121"/>
+  <path d="M90 25L110 25C110 30 100 40 90 25Z" fill="#212121"/>
+  
+  <!-- 耳环 -->
+  <circle cx="65" cy="75" r="3" fill="#FFD700"/>
+  <circle cx="135" cy="75" r="3" fill="#FFD700"/>
+  <path d="M65 75L63 85" stroke="#FFD700" stroke-width="1"/>
+  <path d="M135 75L137 85" stroke="#FFD700" stroke-width="1"/>
+  
+  <!-- 时尚服装 -->
+  <path d="M60 140C60 110 80 100 100 100C120 100 140 110 140 140" fill="#F48FB1"/>
+  <path d="M80 105C80 100 90 95 100 95C110 95 120 100 120 105" fill="#FF80AB"/>
+  <path d="M75 110L85 108M115 108L125 110" stroke="#FF80AB" stroke-width="3"/>
+  
+  <!-- 项链 -->
+  <path d="M95 95C95 90 105 90 105 95" stroke="#FFD700" stroke-width="2"/>
+  <circle cx="100" cy="95" r="2" fill="#FFD700"/>
+  
+  <!-- 眉毛 -->
+  <path d="M80 55L95 53" stroke="#212121" stroke-width="2" stroke-linecap="round"/>
+  <path d="M105 53L120 55" stroke="#212121" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 嘴巴 -->
+  <path d="M95 80C95 80 100 85 105 80" stroke="#212121" stroke-width="2" stroke-linecap="round"/>
+  <path d="M98 81L102 81" stroke="#F06292" stroke-width="2" stroke-linecap="round"/>
+</svg> 

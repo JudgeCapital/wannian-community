@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="200" y2="200">
+      <stop offset="0%" style="stop-color:#795548"/>
+      <stop offset="100%" style="stop-color:#3E2723"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#bgGradient)"/>
+  
+  <!-- 头部 -->
+  <circle cx="100" cy="70" r="35" fill="#FFB74D"/>
+  
+  <!-- 探险帽 -->
+  <path d="M55 40C55 35 75 25 100 25C125 25 145 35 145 40C145 45 125 50 100 50C75 50 55 45 55 40Z" fill="#8D6E63"/>
+  <path d="M55 40L145 40" stroke="#5D4037" stroke-width="3"/>
+  <path d="M60 35L140 35" stroke="#5D4037" stroke-width="2"/>
+  <path d="M95 25L105 25L100 35Z" fill="#5D4037"/>
+  
+  <!-- 探险家发型 -->
+  <path d="M65 60C65 35 85 30 100 30C115 30 135 35 135 60" fill="#3E2723"/>
+  <path d="M135 60C135 70 130 65 130 75" fill="#3E2723"/>
+  <path d="M65 60C65 70 70 65 70 75" fill="#3E2723"/>
+  
+  <!-- 探险装备 -->
+  <path d="M60 140C60 110 80 100 100 100C120 100 140 110 140 140" fill="#8D6E63"/>
+  
+  <!-- 背包 -->
+  <rect x="80" y="105" width="40" height="25" rx="5" fill="#5D4037"/>
+  <rect x="85" y="110" width="30" height="15" rx="2" fill="#8D6E63"/>
+  <circle cx="95" cy="117" r="3" fill="#3E2723"/>
+  <path d="M90 105V100" stroke="#5D4037" stroke-width="2"/>
+  <path d="M110 105V100" stroke="#5D4037" stroke-width="2"/>
+  
+  <!-- 装备带 -->
+  <path d="M85 102H115" stroke="#A1887F" stroke-width="4"/>
+  <circle cx="90" cy="102" r="2" fill="#FFEB3B"/>
+  <circle cx="110" cy="102" r="2" fill="#FFEB3B"/>
+  
+  <!-- 指南针 -->
+  <circle cx="125" cy="115" r="8" fill="#CFD8DC"/>
+  <path d="M125 110L128 117L125 115L122 117Z" fill="#F44336"/>
+  
+  <!-- 眉毛 -->
+  <path d="M85 55L95 53" stroke="#3E2723" stroke-width="2" stroke-linecap="round"/>
+  <path d="M105 53L115 55" stroke="#3E2723" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 眼睛 -->
+  <circle cx="90" cy="65" r="3" fill="#3E2723"/>
+  <circle cx="110" cy="65" r="3" fill="#3E2723"/>
+  <circle cx="88" cy="64" r="1" fill="#FFFFFF"/>
+  <circle cx="108" cy="64" r="1" fill="#FFFFFF"/>
+  
+  <!-- 冒险家的微笑 -->
+  <path d="M90 80C90 80 100 85 110 80" stroke="#3E2723" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 耳朵 -->
+  <path d="M65 70C65 65 70 60 75 60C80 60 80 65 75 70C70 75 65 75 65 70Z" fill="#FFB74D"/>
+  <path d="M135 70C135 65 130 60 125 60C120 60 120 65 125 70C130 75 135 75 135 70Z" fill="#FFB74D"/>
+  
+  <!-- 胡茬 -->
+  <path d="M85 85C85 85 95 90 100 90C105 90 115 85 115 85" stroke="#5D4037" stroke-width="1" stroke-dasharray="2 2"/>
+</svg> 
