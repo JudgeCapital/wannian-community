@@ -236,7 +236,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="h-[60px] bg-white border-b border-gray-200 fixed w-full top-0 z-50">
+      <header className="h-[60px] bg-white border-b border-gray-200 fixed w-[calc(100%-var(--scrollbar-width))] top-0 z-50">
         <style jsx global>{`
           @keyframes dropDown {
             from {

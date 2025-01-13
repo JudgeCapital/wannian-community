@@ -29,7 +29,7 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-[#f5f5f5] fixed top-0 left-0">
+    <div className="fixed inset-0 flex items-center justify-center bg-[#f5f5f5]">
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-sm">
         {/* Logo */}
         <div className="text-center">
