@@ -277,7 +277,7 @@ export default function Header() {
                 {/* LOGO图形部分 */}
                 <div className="w-8 h-8 flex items-center justify-center">
                   <svg
-                    className="w-full h-full logo-spin transform transition-all duration-[1200ms]"
+                    className="w-full h-full logo-spin transform transition-all duration-1000"
                     viewBox="0 0 36 36"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"

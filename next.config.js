@@ -5,7 +5,14 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ['your-domain.com'], // 如果需要的话添加图片域名
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'your-domain.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   }
 }
 
