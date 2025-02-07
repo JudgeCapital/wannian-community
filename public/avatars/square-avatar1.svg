@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="200" height="200" rx="40" fill="#F3F4F6"/>
+  
+  <!-- 头部 -->
+  <rect x="60" y="40" width="80" height="100" rx="20" fill="#4B5563"/>
+  
+  <!-- 西装领子 -->
+  <path d="M60 140 L100 180 L140 140 Z" fill="#1F2937"/>
+  <path d="M85 140 L100 160 L115 140" stroke="white" stroke-width="3"/>
+  
+  <!-- 领带 -->
+  <path d="M95 140 L100 170 L105 140" fill="#DC2626"/>
+  
+  <!-- 眼镜 -->
+  <circle cx="80" cy="80" r="10" stroke="#D1D5DB" stroke-width="3" fill="none"/>
+  <circle cx="120" cy="80" r="10" stroke="#D1D5DB" stroke-width="3" fill="none"/>
+  <line x1="90" y1="80" x2="110" y2="80" stroke="#D1D5DB" stroke-width="3"/>
+</svg> 

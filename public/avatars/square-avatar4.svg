@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="200" height="200" rx="40" fill="#ECFDF5"/>
+  
+  <!-- 头部 -->
+  <rect x="50" y="40" width="100" height="120" rx="15" fill="#059669"/>
+  
+  <!-- 运动头带 -->
+  <rect x="45" y="50" width="110" height="20" rx="10" fill="#34D399"/>
+  <circle cx="100" cy="60" r="5" fill="#FFFFFF"/>
+  
+  <!-- 运动眼镜 -->
+  <rect x="65" y="80" width="25" height="12" rx="6" fill="#D1FAE5"/>
+  <rect x="110" y="80" width="25" height="12" rx="6" fill="#D1FAE5"/>
+  
+  <!-- 表情 - 坚毅 -->
+  <line x1="75" y1="110" x2="125" y2="110" stroke="#FFFFFF" stroke-width="3"/>
+  
+  <!-- 汗水 -->
+  <circle cx="60" cy="90" r="2" fill="#FFFFFF"/>
+  <circle cx="140" cy="90" r="2" fill="#FFFFFF"/>
+  <circle cx="65" cy="100" r="2" fill="#FFFFFF"/>
+  <circle cx="135" cy="100" r="2" fill="#FFFFFF"/>
+</svg> 

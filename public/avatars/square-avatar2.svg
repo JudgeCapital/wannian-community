@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="200" height="200" rx="40" fill="#EEF2FF"/>
+  
+  <!-- 头部形状 - 机器人风格 -->
+  <rect x="50" y="40" width="100" height="120" rx="15" fill="#818CF8"/>
+  
+  <!-- 眼睛 - LED风格 -->
+  <rect x="70" y="70" width="20" height="8" rx="4" fill="#FFFFFF"/>
+  <rect x="110" y="70" width="20" height="8" rx="4" fill="#FFFFFF"/>
+  
+  <!-- 嘴巴 - 数字显示屏风格 -->
+  <rect x="75" y="100" width="50" height="4" rx="2" fill="#FFFFFF"/>
+  <rect x="85" y="110" width="30" height="4" rx="2" fill="#FFFFFF"/>
+  
+  <!-- 天线 -->
+  <line x1="80" y1="30" x2="80" y2="40" stroke="#818CF8" stroke-width="4"/>
+  <line x1="120" y1="30" x2="120" y2="40" stroke="#818CF8" stroke-width="4"/>
+  <circle cx="80" cy="25" r="5" fill="#818CF8"/>
+  <circle cx="120" cy="25" r="5" fill="#818CF8"/>
+  
+  <!-- 电路图案 -->
+  <path d="M50 140 Q75 160 100 140 T150 140" stroke="#C7D2FE" stroke-width="2" fill="none"/>
+  <path d="M50 150 Q75 170 100 150 T150 150" stroke="#C7D2FE" stroke-width="2" fill="none"/>
+</svg> 

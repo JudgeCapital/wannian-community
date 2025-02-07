@@ -3,7 +3,7 @@
 export default function Discussion() {
   return (
     <div className="min-h-[calc(100vh-60px)] flex items-center justify-center p-4">
-      <div className="text-center max-w-2xl mx-auto bg-white rounded-2xl shadow-sm p-12">
+      <div className="text-center w-[600px] min-h-[300px] mx-auto bg-white rounded-2xl shadow-sm p-12">
         {/* 敬请期待图标 */}
         <div className="w-24 h-24 mx-auto mb-6 bg-[#4285F4]/10 rounded-full flex items-center justify-center">
           <svg 
@@ -25,23 +25,9 @@ export default function Discussion() {
           内部讨论组
         </h2>
         
-        <p className="text-gray-600 mb-8">
+        <p className="text-gray-600">
           我们正在努力打造一个更好的交流平台，敬请期待！
         </p>
-
-        <div className="space-y-4">
-          <div className="bg-gray-50 rounded-lg p-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              即将推出的功能
-            </h3>
-            <ul className="text-gray-600 space-y-2">
-              <li>• 实时群组讨论</li>
-              <li>• 专业交易经验分享</li>
-              <li>• 市场动态分析</li>
-              <li>• 更多精彩内容...</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   );

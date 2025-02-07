@@ -3,7 +3,7 @@
 export default function DataDisplay() {
   return (
     <div className="min-h-[calc(100vh-60px)] flex items-center justify-center p-4">
-      <div className="text-center max-w-2xl mx-auto bg-white rounded-2xl shadow-sm p-12">
+      <div className="text-center w-[600px] min-h-[300px] mx-auto bg-white rounded-2xl shadow-sm p-12">
         {/* 敬请期待图标 */}
         <div className="w-24 h-24 mx-auto mb-6 bg-[#4285F4]/10 rounded-full flex items-center justify-center">
           <svg 
@@ -25,30 +25,9 @@ export default function DataDisplay() {
           数据展示
         </h2>
         
-        <p className="text-gray-600 mb-8">
+        <p className="text-gray-600">
           我们正在整合和开发更全面的数据分析功能，敬请期待！
         </p>
-
-        <div className="space-y-4">
-          <div className="bg-gray-50 rounded-lg p-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              即将推出的功能
-            </h3>
-            <ul className="text-gray-600 space-y-2">
-              <li>• 实时市场数据</li>
-              <li>• 高级图表分析</li>
-              <li>• 历史数据查询</li>
-              <li>• 自定义数据报告</li>
-            </ul>
-          </div>
-
-          <div className="bg-[#4285F4]/5 rounded-lg p-4 mt-4">
-            <p className="text-sm text-gray-600">
-              我们致力于为您提供最专业、最全面的数据分析工具，
-              帮助您做出更明智的交易决策。
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );

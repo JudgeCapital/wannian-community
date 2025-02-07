@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="200" height="200" rx="40" fill="#ECFDF5"/>
+  
+  <!-- 马赛克图案 - 绿色系 -->
+  <rect x="40" y="40" width="30" height="30" fill="#059669"/>
+  <rect x="70" y="40" width="30" height="30" fill="#34D399"/>
+  <rect x="100" y="40" width="30" height="30" fill="#059669"/>
+  <rect x="130" y="40" width="30" height="30" fill="#34D399"/>
+  
+  <rect x="40" y="70" width="30" height="30" fill="#34D399"/>
+  <rect x="70" y="70" width="30" height="30" fill="#059669"/>
+  <rect x="100" y="70" width="30" height="30" fill="#34D399"/>
+  <rect x="130" y="70" width="30" height="30" fill="#059669"/>
+  
+  <rect x="40" y="100" width="30" height="30" fill="#059669"/>
+  <rect x="70" y="100" width="30" height="30" fill="#34D399"/>
+  <rect x="100" y="100" width="30" height="30" fill="#059669"/>
+  <rect x="130" y="100" width="30" height="30" fill="#34D399"/>
+  
+  <rect x="40" y="130" width="30" height="30" fill="#34D399"/>
+  <rect x="70" y="130" width="30" height="30" fill="#059669"/>
+  <rect x="100" y="130" width="30" height="30" fill="#34D399"/>
+  <rect x="130" y="130" width="30" height="30" fill="#059669"/>
+  
+  <!-- 区块链连接点 -->
+  <circle cx="55" cy="55" r="3" fill="#047857"/>
+  <circle cx="85" cy="55" r="3" fill="#047857"/>
+  <circle cx="115" cy="55" r="3" fill="#047857"/>
+  <circle cx="145" cy="55" r="3" fill="#047857"/>
+  
+  <circle cx="55" cy="85" r="3" fill="#047857"/>
+  <circle cx="85" cy="85" r="3" fill="#047857"/>
+  <circle cx="115" cy="85" r="3" fill="#047857"/>
+  <circle cx="145" cy="85" r="3" fill="#047857"/>
+  
+  <circle cx="55" cy="115" r="3" fill="#047857"/>
+  <circle cx="85" cy="115" r="3" fill="#047857"/>
+  <circle cx="115" cy="115" r="3" fill="#047857"/>
+  <circle cx="145" cy="115" r="3" fill="#047857"/>
+  
+  <circle cx="55" cy="145" r="3" fill="#047857"/>
+  <circle cx="85" cy="145" r="3" fill="#047857"/>
+  <circle cx="115" cy="145" r="3" fill="#047857"/>
+  <circle cx="145" cy="145" r="3" fill="#047857"/>
+</svg> 

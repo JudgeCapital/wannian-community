@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="200" height="200" rx="40" fill="#EEF2FF"/>
+  
+  <!-- 马赛克图案 - 紫色系 -->
+  <rect x="40" y="40" width="40" height="40" fill="#818CF8"/>
+  <rect x="80" y="40" width="40" height="40" fill="#C7D2FE"/>
+  <rect x="120" y="40" width="40" height="40" fill="#818CF8"/>
+  
+  <rect x="40" y="80" width="40" height="40" fill="#C7D2FE"/>
+  <rect x="80" y="80" width="40" height="40" fill="#818CF8"/>
+  <rect x="120" y="80" width="40" height="40" fill="#C7D2FE"/>
+  
+  <rect x="40" y="120" width="40" height="40" fill="#818CF8"/>
+  <rect x="80" y="120" width="40" height="40" fill="#C7D2FE"/>
+  <rect x="120" y="120" width="40" height="40" fill="#818CF8"/>
+  
+  <!-- 区块链连接线 -->
+  <line x1="60" y1="40" x2="60" y2="160" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 4"/>
+  <line x1="100" y1="40" x2="100" y2="160" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 4"/>
+  <line x1="140" y1="40" x2="140" y2="160" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 4"/>
+  
+  <line x1="40" y1="60" x2="160" y2="60" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 4"/>
+  <line x1="40" y1="100" x2="160" y2="100" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 4"/>
+  <line x1="40" y1="140" x2="160" y2="140" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 4"/>
+</svg> 
