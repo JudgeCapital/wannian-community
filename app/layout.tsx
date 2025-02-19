@@ -26,15 +26,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-[#f5f5f5]`}
+        suppressHydrationWarning
       >
         <AuthProvider>
           <Header />
-          <div className="pt-[60px]">
+          <main className="pt-[60px] min-h-[calc(100vh-60px)]">
             {children}
-          </div>
+          </main>
         </AuthProvider>
       </body>
     </html>

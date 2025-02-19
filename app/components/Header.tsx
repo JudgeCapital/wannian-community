@@ -59,14 +59,66 @@ const navItems = [
   }
 ];
 
+// 静态数据
+const SEARCH_HISTORY = [
+  "量化交易入门",
+  "如何设置止损",
+  "技术分析基础"
+];
+
+const SEARCH_SUGGESTIONS = [
+  { type: 'course', title: "量化交易进阶课程", icon: "📚" },
+  { type: 'post', title: "技术分析入门指南", icon: "📝" },
+  { type: 'user', title: "交易达人", icon: "👤" }
+];
+
+const HOT_SEARCHES = [
+  { keyword: "技术分析", hot: true },
+  { keyword: "量化交易", hot: true },
+  { keyword: "风险控制", hot: false },
+  { keyword: "K线形态", hot: false }
+];
+
+// 通知数据
+const notifications = [
+  {
+    id: 1,
+    title: "新的课程已上线",
+    content: "《量化交易进阶课程》现已上线，包含20节课程内容，带你深入了解量化交易策略。",
+    time: "10分钟前",
+    type: "course"
+  },
+  {
+    id: 2,
+    title: "您的帖子收到新回复",
+    content: "用户@交易达人 回复了您的帖子《如何设置止损》：'建议可以结合ATR指标来设置止损位...'",
+    time: "1小时前",
+    type: "reply"
+  },
+  {
+    id: 3,
+    title: "系统维护通知",
+    content: "系统将于本周六凌晨2:00-4:00进行例行维护，期间部分功能可能无法使用。",
+    time: "2小时前",
+    type: "system"
+  }
+];
+
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const { user, logout } = useAuth();
+  
+  // 所有状态声明放在组件顶部
+  const [mounted, setMounted] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showNotificationModal, setShowNotificationModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchTimer, setSearchTimer] = useState<NodeJS.Timeout | null>(null);
+  const [notificationTimer, setNotificationTimer] = useState<NodeJS.Timeout | null>(null);
+  const [userMenuTimer, setUserMenuTimer] = useState<NodeJS.Timeout | null>(null);
   const [selectedNotification, setSelectedNotification] = useState<{
     id: number;
     title: string;
@@ -75,25 +127,41 @@ export default function Header() {
     type: string;
   } | null>(null);
 
-  // 搜索相关状态
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchHistory] = useState([
-    "量化交易入门",
-    "如何设置止损",
-    "技术分析基础"
-  ]);
-  const [searchSuggestions] = useState([
-    { type: 'course', title: "量化交易进阶课程", icon: "📚" },
-    { type: 'post', title: "技术分析入门指南", icon: "📝" },
-    { type: 'user', title: "交易达人", icon: "👤" }
-  ]);
-  const [hotSearches] = useState([
-    { keyword: "技术分析", hot: true },
-    { keyword: "量化交易", hot: true },
-    { keyword: "风险控制", hot: false },
-    { keyword: "K线形态", hot: false }
-  ]);
+  // 所有 useEffect 放在一起
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.dropdown-container')) {
+        setShowSearch(false);
+        setShowNotifications(false);
+        setShowUserMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleNotificationClick = (event: CustomEvent) => {
+      setSelectedNotification(event.detail);
+      setShowNotificationModal(true);
+    };
+
+    window.addEventListener('notification-click', handleNotificationClick as EventListener);
+
+    return () => {
+      window.removeEventListener('notification-click', handleNotificationClick as EventListener);
+    };
+  }, []);
+
+  // 事件处理函数
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
@@ -104,52 +172,14 @@ export default function Header() {
 
   const handleSearchItemClick = (keyword: string) => {
     setSearchQuery(keyword);
-    // 不再关闭搜索框
-    // setShowSearch(false);
-    
-    // 自动聚焦到搜索框
     const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
     if (searchInput) {
       searchInput.focus();
-      // 将光标移动到文本末尾
       const len = searchInput.value.length;
       searchInput.setSelectionRange(len, len);
     }
   };
 
-  // 模拟通知数据
-  const notifications = [
-    {
-      id: 1,
-      title: "新的课程已上线",
-      content: "《量化交易进阶课程》现已上线，包含20节课程内容，带你深入了解量化交易策略。",
-      time: "10分钟前",
-      type: "course"
-    },
-    {
-      id: 2,
-      title: "您的帖子收到新回复",
-      content: "用户@交易达人 回复了您的帖子《如何设置止损》：'建议可以结合ATR指标来设置止损位...'",
-      time: "1小时前",
-      type: "reply"
-    },
-    {
-      id: 3,
-      title: "系统维护通知",
-      content: "系统将于本周六凌晨2:00-4:00进行例行维护，期间部分功能可能无法使用。",
-      time: "2小时前",
-      type: "system"
-    }
-  ];
-
-  // 定时器引用
-  const [searchTimer, setSearchTimer] = useState<NodeJS.Timeout | null>(null);
-  const [notificationTimer, setNotificationTimer] = useState<NodeJS.Timeout | null>(null);
-
-  // 添加用户菜单定时器
-  const [userMenuTimer, setUserMenuTimer] = useState<NodeJS.Timeout | null>(null);
-
-  // 处理搜索区域的鼠标事件
   const handleSearchMouseEnter = () => {
     if (searchTimer) {
       clearTimeout(searchTimer);
@@ -167,7 +197,6 @@ export default function Header() {
     setSearchTimer(timer);
   };
 
-  // 处理通知区域的鼠标事件
   const handleNotificationsMouseEnter = () => {
     if (notificationTimer) {
       clearTimeout(notificationTimer);
@@ -185,7 +214,6 @@ export default function Header() {
     setNotificationTimer(timer);
   };
 
-  // 处理用户菜单的鼠标事件
   const handleUserMenuMouseEnter = () => {
     if (userMenuTimer) {
       clearTimeout(userMenuTimer);
@@ -203,40 +231,33 @@ export default function Header() {
     setUserMenuTimer(timer);
   };
 
-  // 添加点击外部区域关闭的处理
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (!target.closest('.dropdown-container')) {
-        setShowSearch(false);
-        setShowNotifications(false);
-        setShowUserMenu(false);
-      }
-    };
+  // 渲染占位 header
+  if (!mounted) {
+    return (
+      <header className="fixed top-0 left-0 right-0 h-[60px] bg-white border-b border-gray-200 z-50">
+        <div className="h-full max-w-[1200px] mx-auto px-4 flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <div className="w-[130px]" />
+            <nav className="hidden md:flex items-center gap-1">
+              {navItems.map((item) => (
+                <div key={item.title} className="h-[36px] w-[100px]" />
+              ))}
+            </nav>
+          </div>
+          <div className="flex items-center gap-6">
+            <div className="w-[40px]" />
+            <div className="w-[40px]" />
+            <div className="w-[80px]" />
+          </div>
+        </div>
+      </header>
+    );
+  }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  // 添加事件监听器
-  useEffect(() => {
-    const handleNotificationClick = (event: CustomEvent) => {
-      setSelectedNotification(event.detail);
-      setShowNotificationModal(true);
-    };
-
-    window.addEventListener('notification-click', handleNotificationClick as EventListener);
-
-    return () => {
-      window.removeEventListener('notification-click', handleNotificationClick as EventListener);
-    };
-  }, []);
-
+  // 主要渲染
   return (
     <>
-      <header className="h-[60px] bg-white border-b border-gray-200 fixed w-[calc(100%-var(--scrollbar-width))] top-0 z-50">
+      <header className="fixed top-0 left-0 right-0 h-[60px] bg-white border-b border-gray-200 z-50">
         <style jsx global>{`
           @keyframes dropDown {
             from {
@@ -270,7 +291,7 @@ export default function Header() {
           }
         `}</style>
         
-        <div className="max-w-[1200px] mx-auto h-full flex items-center justify-between px-4">
+        <div className="h-full max-w-[1200px] mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href="/">
               <div className="flex items-center gap-2 cursor-pointer group">
@@ -457,7 +478,7 @@ export default function Header() {
                   {searchQuery && (
                     <div className="mt-4">
                       <h3 className="text-sm text-gray-500 px-1 mb-2">搜索建议</h3>
-                      {searchSuggestions.map((suggestion, index) => (
+                      {SEARCH_SUGGESTIONS.map((suggestion, index) => (
                         <button
                           key={index}
                           onClick={() => handleSearchItemClick(suggestion.title)}
@@ -483,7 +504,7 @@ export default function Header() {
                   {!searchQuery && (
                     <>
                       {/* 搜索历史 */}
-                      {searchHistory.length > 0 && (
+                      {SEARCH_HISTORY.length > 0 && (
                         <div className="mt-4">
                           <div className="flex justify-between items-center px-1 mb-2">
                             <h3 className="text-sm text-gray-500">搜索历史</h3>
@@ -492,7 +513,7 @@ export default function Header() {
                             </button>
                           </div>
                           <div className="flex flex-wrap gap-2">
-                            {searchHistory.map((item, index) => (
+                            {SEARCH_HISTORY.map((item, index) => (
                               <button
                                 key={index}
                                 onClick={() => handleSearchItemClick(item)}
@@ -510,7 +531,7 @@ export default function Header() {
                       <div className="mt-4">
                         <h3 className="text-sm text-gray-500 px-1 mb-2">热门搜索</h3>
                         <div className="flex flex-wrap gap-2">
-                          {hotSearches.map((item, index) => (
+                          {HOT_SEARCHES.map((item, index) => (
                             <button
                               key={index}
                               onClick={() => handleSearchItemClick(item.keyword)}

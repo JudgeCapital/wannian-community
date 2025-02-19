@@ -2,17 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --scrollbar-width: calc(100vw - 100%);
-}
-
+/* 确保滚动条始终显示 */
 html {
   overflow-y: scroll;
-  width: 100vw;
+}
+
+/* 重置基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  width: calc(100vw - var(--scrollbar-width));
+  width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
@@ -79,6 +83,65 @@ body {
   to {
     opacity: 0;
   }
+}
+
+/* 星星呼吸动画 */
+@keyframes star-breath-1 {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+@keyframes star-breath-2 {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.4); }
+}
+
+@keyframes star-breath-3 {
+  0%, 100% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* 星星摇摆动画 - 三种不同幅度 */
+@keyframes star-sway-1 {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+@keyframes star-sway-2 {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-7px); }
+}
+
+@keyframes star-sway-3 {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+/* 组合动画 */
+@keyframes star-breath-large-sway {
+  0% { opacity: 0.15; transform: scale(0.8) translateX(0); }
+  50% { opacity: 0.6; transform: scale(1.2) translateX(0); }
+  100% { opacity: 0.15; transform: scale(0.8) translateX(0); }
+}
+
+@keyframes star-breath-and-sway-1 {
+  0%, 100% { opacity: 0.2; transform: scale(0.8) translateX(0); }
+  50% { opacity: 0.8; transform: scale(1.2) translateX(3px); }
+}
+
+@keyframes star-breath-and-sway-2 {
+  0%, 100% { opacity: 0.1; transform: scale(1) translateX(0); }
+  50% { opacity: 0.6; transform: scale(1.4) translateX(-4px); }
+}
+
+@keyframes star-breath-and-sway-3 {
+  0%, 100% { opacity: 0.3; transform: scale(0.9) translateX(0); }
+  50% { opacity: 1; transform: scale(1.1) translateX(2px); }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.4; }
 }
 
 .animate-modal-in {
@@ -169,4 +232,50 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+}
+
+/* Banner颜色循环动画 */
+@keyframes banner-color-cycle {
+  0%, 100% { background-color: #0F172A; }
+  20% { background-color: #1E293B; }
+  40% { background-color: #2563EB; }
+  60% { background-color: #3B82F6; }
+  80% { background-color: #60A5FA; }
+}
+
+.banner-animate {
+  animation: banner-color-cycle 60s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transition: background-color 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 文字渐变和呼吸动画 */
+@keyframes text-gradient-breath {
+  0%, 100% {
+    background-size: 200% 100%;
+    background-position: 0% center;
+  }
+  50% {
+    background-size: 200% 100%;
+    background-position: 100% center;
+  }
+}
+
+.animate-gradient-text {
+  background: linear-gradient(
+    90deg,
+    #FF6B00 0%,
+    #FFA366 16.67%,
+    #4CAF50 33.33%,
+    #2196F3 50%,
+    #9C27B0 66.67%,
+    #FF5722 83.33%,
+    #FF6B00 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-gradient-breath 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  display: inline-block;
+  font-weight: 800;
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
 }
